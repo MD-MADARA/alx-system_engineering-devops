@@ -1,0 +1,5 @@
+Host alx
+    HostName 34.229.66.3
+    User ubuntu
+    IdentityFile ~/.ssh/Madara_key
+    PasswordAuthentication no

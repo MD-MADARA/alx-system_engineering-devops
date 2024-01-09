@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
-# configure new Ubuntu machine
-apt-get update -y && apt-get install nginx -y
-
-echo "Hello World!" > /var/www/html/index.html
-
-echo "Ceci n'est pas une page\n" > /var/www/html/404.html'
-
-path="/etc/nginx/sites-available/default"
-inserted_text="location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}\n\
-\terror_page 404 /404.html;
-\tadd_header X-Served-By $HOSTNAME;"
-
-sed -i "/^server {/,/^}/ s/\(^}\)/\t$inserted_text\n\1/" $path
-service nginx restart
+# Double the number of webservers
+sudo apt-get -y update
+sudo apt-get -y install nginx
+config="/etc/nginx/sites-available/default"
+sudo sh -c "echo 'Hello World!' > /var/www/html/index.nginx-debian.html"
+sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;}' $config
+sudo sed -i '/^}$/i \ \n\tlocation @404 {return 404 "Ceci n'\''est pas une page\\n";}' $config
+sudo sed -i 's/=404/@404/g' $config
+sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$HOSTNAME';/" $config
+sudo service nginx restart

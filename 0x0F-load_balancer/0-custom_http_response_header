@@ -3,5 +3,5 @@
 sudo apt-get update -y
 sudo apt-get install nginx -y
 PATH="/etc/nginx/sites-available/default"
-sudo sed -i "/server {/a\ t\add_header X-Served-By '$HOSTNAME';/" $PATH
+sudo sed -i "/server {/a\ \tadd_header X-Served-By '$HOSTNAME';/" $PATH
 sudo service nginx restart

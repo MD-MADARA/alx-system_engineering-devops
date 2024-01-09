@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 # configure new Ubuntu machine
-sudo apt-get update -y
-sudo apt-get install nginx -y
-PATH="/etc/nginx/sites-available/default"
-sudo sed -i "/server {/a\ \tadd_header X-Served-By '$HOSTNAME';" $PATH
-sudo service nginx restart
+apt-get update -y && apt-get install nginx -y
+
+echo "Hello World!" > /var/www/html/index.html
+
+echo "Ceci n'est pas une page\n" > /var/www/html/404.html'
+
+path="/etc/nginx/sites-available/default"
+inserted_text="location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}\n\
+\terror_page 404 /404.html;
+\tadd_header X-Served-By $HOSTNAME;"
+
+sed -i "/^server {/,/^}/ s/\(^}\)/\t$inserted_text\n\1/" $path
+service nginx restart

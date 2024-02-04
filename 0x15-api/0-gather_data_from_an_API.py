@@ -3,17 +3,20 @@
 import requests
 import sys
 
-if __name__ == "__main__":
-    def json_response(url, data=None):
-        """get response using get request"""
-        if data:
-            if isinstance(requests.get(url).json(), list):
-                return [result.get(data) for result in requests.get(url).json()]
-            else:
-                return requests.get(url).json().get(data)
-        else:
-            return requests.get(url).json()
 
+def json_response(url, data=None):
+    """get response using get request"""
+    if data:
+        if isinstance(requests.get(url).json(), list):
+            return [result.get(data) for result in requests.get(url).json()]
+        else:
+            return requests.get(url).json().get(data)
+    else:
+        return requests.get(url).json()
+
+
+def main():
+    """main function"""
 
     url = "https://jsonplaceholder.typicode.com"
     EmployeeID = sys.argv[1]
@@ -32,4 +35,8 @@ if __name__ == "__main__":
         EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS
     ))
     for TASK_TITLE in json_response(completed_tasks, "title"):
-        print(f"\t{TASK_TITLE}")
+        print(f"\t {TASK_TITLE}")
+
+
+if __name__ == "__main__":
+    main()

@@ -34,8 +34,8 @@ def main():
     print("Employee {} is done with tasks({}/{}):".format(
         EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS
     ))
-    for TASK_TITLE in json_response(completed_tasks, "title"):
-        print(f"\t{TASK_TITLE}")
+    for task in json_response(completed_tasks):
+        print(f"\t{task.get('title')}")
 
 
 if __name__ == "__main__":

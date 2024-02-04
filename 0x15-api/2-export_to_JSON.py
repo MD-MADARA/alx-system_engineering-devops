@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    """def com"""
+    """main doc"""
     url = "https://jsonplaceholder.typicode.com"
     EmployeeID = sys.argv[1]
 

@@ -25,7 +25,7 @@ def main():
     user_tasks = f"{url}/todos?userId={EmployeeID}"
 
     # data:
-    EMPLOYEE_NAME = json_response(user_data, "name")
+    USER_NAME = json_response(user_data, "username")
     TOTAL_TASKS = json_response(user_tasks)
 
     # export to CSV
@@ -34,7 +34,7 @@ def main():
             TASK_STATUS = task.get("completed")
             TASK_TITLE = task.get("title")
             f.write('\"{}\",\"{}\",\"{}\",\"{}\"\n'.format(
-                EmployeeID, EMPLOYEE_NAME, TASK_STATUS, TASK_TITLE
+                EmployeeID, USER_NAME, TASK_STATUS, TASK_TITLE
             ))
 
 

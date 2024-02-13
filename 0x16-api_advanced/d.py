@@ -1,10 +1,6 @@
 #!/usr/bin/python3
-"""
-Module documentaion
-"""
+"""How many subs?"""
 import requests
-
-headers = {"User-Agent": "My Reddit Subscribers Checker"}
 
 
 def number_of_subscribers(subreddit):
@@ -38,3 +34,33 @@ def number_of_subscribers(subreddit):
     else:
         # Invalid subreddit or other error occurred
         return 0
+
+# import requests
+
+# def number_of_subscribers(subreddit):
+#     """
+#     Queries the Reddit API and returns the number of subscribers
+#     for a given subreddit.
+
+#     Args:
+#         subreddit (str): The name of the subreddit.
+
+#     Returns:
+#         int: Number of subscribers (total subscribers) for the subreddit.
+#         Returns 0 if invalid.
+#     """
+#     try:
+#         # Set a custom User-Agent to avoid Too Many Requests errors
+#         headers = {'User-Agent': 'My Reddit Subscribers Checker'}
+
+#         # Make the API request
+#         url = f"https://www.reddit.com/r/{subreddit}/about.json"
+#         response = requests.get(url, headers=headers)
+#         data = response.json()
+
+#         # Extract the subscriber count
+#         subscribers = data['data']['subscribers']
+#         return subscribers
+#     except (KeyError, requests.RequestException):
+#         # Invalid subreddit or other error
+#         return 0

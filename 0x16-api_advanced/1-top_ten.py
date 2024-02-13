@@ -21,7 +21,7 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'My Reddit Subscribers Checker'}
 
     # Send GET request to the Reddit API
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    response = requests.get(url, allow_redirects=False, headers=headers)
 
     # Check if the response is successful (status code 200)
     if response.status_code == 200:
